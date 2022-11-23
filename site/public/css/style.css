@@ -1,0 +1,687 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --corTitulo: #000D1D;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body::-webkit-scrollbar-track {
+    background-color: #000D1D;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #01B5F2;
+}
+
+body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+}
+
+header {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #00000013;
+    padding: 0px 50px;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 3;
+    transition: .2s ease;
+}
+
+header.sticky {
+    background-color: #000D1D;
+}
+
+.logonavbar {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.logonavbar img {
+    width: 90px;
+
+
+}
+
+.logonavbar ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style: none;
+}
+
+.logonavbar ul li {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logonavbar ul a {
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    width: max-content;  
+    border-bottom: solid 0 transparent;
+    transition: .2s ease;
+}
+
+ul a:hover {
+    border-bottom: solid 1px #006ab1;
+}
+
+header .fakebutton {
+    width: 127px;
+    height: 28px;
+    background-color: transparent;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+header .fakebutton:hover {
+    border-bottom: solid 1px #006ab1;
+}
+
+.buttonslogcad {
+    width: 21%;
+    display: flex;
+}
+
+.banner {
+    width: 100vw;
+    height: 95vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../assets/banner.png);
+    background-size: cover;
+    background-position-y: -5rem;
+}
+
+.mensagem {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.mensagem h2 {
+    color: whitesmoke;
+    font-size: 60px;
+    font-weight: 400;
+    line-height: 80px;
+}
+
+.mensagem p {
+    color: whitesmoke;
+    margin: 1rem 5px;
+
+}
+
+.fakebutton {
+    width: 176px;
+    height: 38px;
+    background-color: #40cef6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.fakebutton a {
+    text-decoration: none;
+    transition: .2s ease;
+    color: #000000;
+}
+
+.fakebutton:hover {
+    background-color: #7fdaf4;
+    box-shadow: 0 0 5px #00c8ff;
+}
+
+.fakebutton:hover a {
+    font-weight: 500;
+}
+
+.beneficios {
+    width: 100vw;
+    height: 1000px;
+    background-color: #d3d3d3;
+    padding-top: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nadador {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+
+}
+
+.nadador img {
+    width: 100%;
+    position: relative;
+    bottom: 0;
+}
+
+.beneficioM {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 60%;
+    height: 100%;
+}
+
+.contentB {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
+.tituloB {
+    width: 90%;
+    margin-bottom: 3rem;
+
+}
+
+.tituloB h4 {
+    color: #243F5E;
+    letter-spacing: 2px;
+    font-size: 2rem;
+}
+
+.tituloB h1 {
+    color: var(--corTitulo);
+    font-size: 4rem;
+    font-weight: 500;
+    line-height: 80px;
+}
+
+.info {
+    width: 90%;
+    padding: 1rem;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.info .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.info p {
+    line-height: 25px;
+}
+
+.title .icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #01B5F2;
+    color: white;
+}
+
+.title h1 {
+    color: #01B5F2;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.natacao {
+    background-color: #000D1D;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.corpoN {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.corpoTexto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 60%;
+    margin-bottom: 60px;
+}
+
+.corpoTexto h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 50px;
+    font-weight: 700;
+    margin-top: 60px;
+}
+
+.nataInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 60%;
+}
+
+.nataInfo h3 {
+    color: #00c8ff;
+    font-size: 20px;
+    font-weight: 700;
+    gap: 1rem;
+}
+
+.nataInfo p {
+    color: white;
+    line-height: 30px;
+}
+
+.nataImg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nataImg img {
+    width: 60%;
+}
+
+
+.modalidade {
+    background-color: #d3d3d3;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+}
+
+.modalidade h3 {
+    margin-top: 3rem;
+    font-size: 50px;
+    font-weight: 700;
+    color: var(--corTitulo);
+}
+
+.cardExp {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 80%;
+    padding: 2rem 0;
+}
+
+.nado {
+    width: 20%;
+    height: 500px;
+    bottom: 0;
+    transition: .2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    transition: .5s ease;
+}
+
+.nado .info {
+    width: 100%;
+    padding: 1rem;
+    padding-bottom: 2rem;
+    background: linear-gradient(0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.nado .info h1{
+    width: 350px;
+    opacity: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    transition: .1s ease; 
+    color: var(--corTitulo);
+}
+
+.nado .info p{
+    width: 350px;
+    opacity: 0;
+    transition: .1s ease;
+    color: var(--corTitulo);
+}
+
+
+.nado:hover .info h1{
+    opacity: 1;
+    transition: .5s ease;
+    transition-delay: .1s;
+}
+
+.nado:hover .info p{
+    opacity: 1;
+    transition: .5s ease;
+    transition-delay: .1s;
+}
+
+.nado:hover {
+    width: 400px;
+}
+
+.nado:hover .info{
+    background: linear-gradient(0deg, #00c8ff 0%, rgba(0, 212, 255, 0) 100%);
+}
+
+.b {
+    background-image: url("../assets/borboleta.png");
+    background-size: 500px;
+    background-position: center;
+}
+
+.f {
+    background-image: url("../assets/crawl.png");
+    background-size: 500px;
+    background-position: center;
+}
+
+.c {
+    background-image: url("../assets/costas.png");
+    background-size: 500px;
+    background-position: left;
+}
+
+.p {
+    background-image: url("../assets/peito.png");
+    background-size: 400px;
+    background-position: center;
+}
+
+
+
+.atletas {
+    background-color: #000D1D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 100px;
+}
+
+.atletas h2 {
+    font-size: 50px;
+    font-weight: 700;
+    color: #00c8ff;
+    margin-bottom: 5rem;
+}
+
+.corpoAtleta {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    gap: 7rem;
+}
+
+.caixaAtleta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.caixaImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+}
+
+.caixaImg img {
+    width: 300px;
+}
+
+.infoAtleta {
+    width: 40%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.containerInfo {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.medalha {
+    width: 60%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+}
+
+.medalha h3 {
+    font-weight: 300;
+}
+
+.medalha i {
+    color: #00c8ff;
+}
+
+
+.nome {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.nome h1 {
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 70px;
+    color: white;
+}
+
+.nome h1 b {
+    font-size: 85px;
+    font-weight: 700;
+    color: #00c8ff;
+}
+
+
+.nacionalidade {
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    letter-spacing: 1px;
+    color: white;
+}
+
+.nacionalidade img {
+    width: 20px;
+}
+
+
+
+.footer {
+    height: 250px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.952);
+    padding: 70px 0px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer-container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.footer ul {
+    list-style: none;
+}
+
+.footer-col {
+    width: 25%;
+    padding: 0 15px;
+}
+
+.footer-col h4 {
+    font-size: 18px;
+    color: #00c8ff;
+    text-transform: capitalize;
+    margin-bottom: 35px;
+    font-weight: 500;
+    position: relative;
+}
+
+.footer-col h4::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    background-color: #00c8ff;
+    height: 2px;
+    box-sizing: border-box;
+    width: 85px;
+}
+
+
+
+.footer-col ul li a {
+    font-size: 16px;
+    text-transform: capitalize;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 300;
+    color: #bbbbbb;
+    transition: all 0.3s eases;
+    border: none;  
+    line-height: 25px;
+    padding: 0px;
+    transition: .1s ease;
+}
+
+.footer-col ul li a:hover {
+    color: #b5d1f3;
+    padding-left: 6px;
+}
+
+.footer-col .social-links a {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    background-color: rgba(255, 255, 255, 0.966);
+    margin: 0 10px 10px 0;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    color: #ffffff;
+}
+.footer-col .social-links a:hover{
+    transition: all 0.5s ease;
+    background-color: #0052b6;
+}
+.footer-col .social-links a {
+    color: #00c8ff;
+    background-color: #000D1D;
+}
+
+
+.donw1 {
+    height: 50px;
+    width: 50px;
+    background-color: whitesmoke;
+    border-radius: 50%;
+    position: absolute;
+    margin-top: 38%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    box-shadow: 0px 0px 10px 5px #4f4f4f4c;
+
+}
+
+.donw1 ion-icon {
+    height: 30px;
+    width: 30px;
+}

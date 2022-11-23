@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/reset.css">
+    <script src="https://kit.fontawesome.com/c0298d0f9d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/styleLogin.css">
+    <script src="js/script.js"> </script>
+    <title> Natação </title>
+</head>
+
+<!-- NaveBar fi -->
+<div class="block">
+    <header>
+        <div class="logonavbar">
+            <img src="assets/logoShark.png" alt="">
+            <ul>
+                <li> <a href="index.html">HOME</a></li>
+                <li> <a href="#"> NATAÇÃO </a></li>
+                <li> <a href="#"> MODALIDADE</a></li>
+                <li> <a href="#">ATLETAS</a></li>
+                <li> <a href="sobreMim.html"> SOBRE MIM </a></li>
+            </ul>
+        </div>
+        <div class="buttonslogcad">
+            <a class="fakebutton" href="#">LOGIN</a>
+            <a class="fakebutton" href="cadastro.html">CADASTRE-SE</a>
+        </div>
+    </header>
+
+    <!-- Form do login -->
+    <div class="container">
+        <div class="form tr">
+            <div class="nadadorL"></div>
+        </div>
+
+        <div class="form">
+            <h2>LOGIN</h2>
+
+            <div class="campo">
+                <label for="email">Email</label>
+                <input type="text" name="" id="in_email" placeholder="admin@email.com">
+            </div>
+
+            <div class="campo">
+                <label for="password">Senha:</label>
+                <input type="password" id="in_password" placeholder="********">
+            </div>
+            <button onclick="validar()">Entrar</button>
+            <div id="div_result"></div><br>
+
+            <span> Ainda não se cadastrou? <a href="dataCadastro.html">Clique aqui</a> </span>
+        </div>
+    </div>
+
+    </body>
+
+</html>
