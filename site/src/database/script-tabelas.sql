@@ -12,24 +12,26 @@ USE sharkAcademy;
 
 CREATE TABLE competicao (
 	idComp int primary key,
-    categoria varchar (30),
     dataH datetime,
     localComp varchar(60)
 );
 
 CREATE TABLE modalidade (
 	idModalidade int primary key,
-    descricao varchar (40),
-    fkComp int,
-    foreign key (fkComp) references competicao (idComp)
+    descricao varchar (40)
 );
 
 CREATE TABLE nadador (
-	idNadador int primary key, 
+	idNadador int primary key auto_increment, 
     nome varchar(60),
+	email varchar(70),
     cpf char(11),
-    dataNasc date,
-    genero char(6),
-    fkComp int,
-    foreign key (fkComp) references competicao (idComp)
+	dtNasc date,
+	telefone varchar (11),
+	senha varchar(50),
+    categoria varchar(40),
+    fkModalidade int,
+    foreign key (fkModalidade) references modalidade (idModalidade),
+    fkCompeticao int, 
+     foreign key (fkCompeticao) references competicao (idComp)
 );

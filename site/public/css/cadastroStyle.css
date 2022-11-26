@@ -191,7 +191,7 @@ header .fakebutton:hover {
     width: 100%;
 }
 
-#campo-sel{
+.campo_sel{
     border: none;
     padding: .4rem;
     border-radius: 8px;

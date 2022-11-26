@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styleComp.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="mae">
+        <div class="navBar">
+            <div class="cbar">
+                <div class="list">
+                    <ion-icon name="person-circle-outline" class="circulo"></ion-icon>
+                    <a href="admin.html">
+                        <ion-icon name="stats-chart-outline" class="desenhoBar"></ion-icon>
+                    </a>
+                    <a href="#">
+                        <ion-icon name="list-outline" class="desenhoBar"></ion-icon>
+                    </a>
+                </div>
+                <div class="exit">
+                    <a href="../quem somos/quemsomos.html">
+                        <ion-icon name="exit-outline" class="desenhoBar"></ion-icon>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="corpoFiltro">
+            <div class="caixaSel">
+                <select id="sel_filtroM">
+                    <option value=""> -- Modalidade --</option>
+                    <option value=""> Crawl </option>
+                    <option value=""> Costas </option>
+                    <option value=""> Peito </option>
+                    <option value=""> Borboleta </option>
+                </select>
+
+                <select id="sel_filtroC">
+                    <option value=""> -- Categoria --</option>
+                    <option value=""> Infantil </option>
+                    <option value=""> Juvenil </option>
+                    <option value=""> Junior </option>
+                    <option value=""> Infanto-Juvenil </option>
+                    <option value=""> Junior-Sênior </option>
+
+                </select>
+            </div>
+
+            <div class="caixaIn">
+                <input type="text" id="in_filtro" placeholder="Filtrar nome">
+                <button onclick="filtrar()">Filtrar</button>
+            </div>
+        </div>
+
+
+        <table>
+            <thead>
+                <tr>
+                    <td> ID </td>
+                    <td> Nome </td>
+                    <td> Modalidade </td>
+                    <td> Categoria </td>
+                    <td> Data </td>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td> 1 </td>
+                    <td> Junior Garcia </td>
+                    <td> Crawl </td>
+                    <td> Mirim </td>
+                    <td> 20/12/2022 </td>
+                </tr>
+
+                <tr>
+                    <td> 2 </td>
+                    <td> Carlos Romão </td>
+                    <td> Crawl </td>
+                    <td> Mirim </td>
+                    <td> 20/12/2022 </td>
+                </tr>
+
+                <tr>
+                    <td> 3 </td>
+                    <td> Phelipe João </td>
+                    <td> Crawl </td>
+                    <td> Mirim </td>
+                    <td> 20/12/2022 </td>
+                </tr>
+            </tbody>
+
+        </table>
+
+
+    </div>
+
+</body>
+
+</html>

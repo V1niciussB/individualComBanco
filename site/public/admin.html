@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="css/styleAdmin.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title> Gráficos Ativos </title>
+</head>
+
+<body>
+  <div class="mae">
+    <div class="navBar">
+      <div class="cbar">
+        <div class="list">
+          <ion-icon name="person-circle-outline" class="circulo"></ion-icon>
+          <a href="#">
+            <ion-icon name="stats-chart-outline" class="desenhoBar"></ion-icon>
+          </a>
+          <a href="competicao.html">
+            <ion-icon name="list-outline" class="desenhoBar"></ion-icon>
+          </a>
+        </div>
+        <div class="exit">
+          <a href="../quem somos/quemsomos.html">
+            <ion-icon name="exit-outline" class="desenhoBar"></ion-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="corpoGrafico">
+      <div class="grafico 1">
+        <div>
+          <canvas id="chartBar"></canvas>
+        </div>
+
+      </div>
+      <div class="grafico 2">
+        <canvas id="chartLine"></canvas>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script>
+  const labelsBar = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+  ];
+
+  const dataBar = {
+    labels: labelsBar,
+    datasets: [{
+      label: 'My First dataset',
+      backgroundColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgb(255, 99, 132)',
+      data: [0, 10, 5, 2, 20, 30, 45],
+    }]
+  };
+
+  const configBar = {
+    type: 'bar',
+    data: dataBar,
+    options: {}
+  };
+
+  const labelsLine = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+  ];
+
+  const dataLine = {
+    labels: labelsLine,
+    datasets: [{
+      label: 'My First dataset',
+      backgroundColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgb(255, 99, 132)',
+      data: [0, 10, 5, 2, 20, 30, 45],
+    }]
+  };
+
+  const configLine = {
+    type: 'line',
+    data: dataLine,
+    options: {}
+  };
+</script>
+<script>
+  const bar = new Chart(
+    document.getElementById('chartBar'),
+    configBar
+  );
+
+  const line = new Chart(
+    document.getElementById('chartLine'),
+    configLine
+  );
+</script>

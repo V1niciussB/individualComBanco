@@ -19,20 +19,35 @@ function entrar(email, senha) {
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
-function cadastrar(nome, email, cpf, dtNasc, telefone, senha) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, cpf, dtNasc, telefone, senha);
-    
+function cadastrar(nome, email, cpf, dtNasc, telefone, senha, modalidade) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, cpf, dtNasc, telefone, senha, modalidade);
+
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucao = `
-        INSERT INTO nadador (nome, email, cpf, dtNasc, telefone, senha) VALUES ('${nome}', '${email}', '${cpf}', '${dtNasc}', '${telefone}', '${senha}');
+        INSERT INTO nadador (nome, email, cpf, dtNasc, telefone, senha, fkModalidade) VALUES ('${nome}', '${email}', '${cpf}', '${dtNasc}', '${telefone}', '${senha}', ${modalidade});
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
+
 }
+
+// Idade nadadores
+function selectIdade() {
+    var instrucao = `
+    SELECT nome, timestampdiff(year,dtNasc,curdate()) as idade FROM nadador
+    ORDER BY idNadador desc
+    limit 1;`
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
 
 module.exports = {
     entrar,
     cadastrar,
     listar,
+    selectIdade
 };

@@ -33,7 +33,7 @@ function entrar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
-        
+
         usuarioModel.entrar(email, senha)
             .then(
                 function (resultado) {
@@ -68,6 +68,7 @@ function cadastrar(req, res) {
     var dtNasc = req.body.dtNascServer;
     var telefone = req.body.telefoneServer;
     var senha = req.body.senhaServer;
+    var modalidade = req.body.modalidadeServer;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -77,9 +78,9 @@ function cadastrar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else {
-        
+
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, cpf, dtNasc, telefone, senha)
+        usuarioModel.cadastrar(nome, email, cpf, dtNasc, telefone, senha, modalidade)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -97,9 +98,29 @@ function cadastrar(req, res) {
     }
 }
 
+function selectIdade(req, res) {
+    usuarioModel.selectIdade()
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        )
+
+}
+
 module.exports = {
     entrar,
     cadastrar,
     listar,
-    testar
+    testar,
+    selectIdade
 }
