@@ -124,6 +124,7 @@
                 cpfServer: cpf_input.value,
                 dtNascServer: dtNasc_input.value,
                 telefoneServer: telefone_input.value,
+                generoServer: sel_genero.value,
                 senhaServer: senha_input.value,
                 modalidadeServer: sel_modali.value,
                 categoriaServer: "",
@@ -138,16 +139,16 @@
             var idade = anoAtual - ano
             console.log(idade)
 
-            if (idade == 15) {
-                nadador.categoriaServer = "Juvenil I"
-            } else if (idade == 16) {
-                nadador.categoriaServer = "Juvenil II"
-            } else if (idade == 17) {
-                nadador.categoriaServer = "Junior I"
-            } else if (idade == 18 || idade == 19) {
-                nadador.categoriaServer = "Junior II"
-            } else {
+            if (idade > 25) {
+                nadador.categoriaServer = "Master"
+            } else if (idade  > 20) {
                 nadador.categoriaServer = "Senior"
+            } else if (idade > 17) {
+                nadador.categoriaServer = "Junior"
+            } else if (idade > 15) {
+                nadador.categoriaServer = "Juvenil"
+            } else {
+                alert(`Desculpe, você ainda não possui a idade mínima para participar da competição!`)
             }
             console.log(nadador)
 
@@ -155,49 +156,44 @@
             var modal = nadador.modalidadeServer
 
             // primeiro horário da competição baseado na modalidade e categoria
-            if (categoria == "Juvenil I" && modal == 1) {
+            if (categoria == "Juvenil" && modal == 1) {
                 nadador.fkCompServer = 1
-            } else if (categoria == "Juvenil II" && modal == 1) {
+            } else if (categoria == "Junior" && modal == 1) {
                 nadador.fkCompServer = 2
-            } else if (categoria == "Junior I" && modal == 1) {
+            } else if (categoria == "Senior" && modal == 1) {
                 nadador.fkCompServer = 3
-            } else if (categoria == "Junior II" && modal == 1) {
+            } else if (categoria == "Master" && modal == 1) {
                 nadador.fkCompServer = 4
-            }  else if(categoria == "Senior" && modal == 1){
+            }
+
+            else if (categoria == "Juvenil" && modal == 2) {
                 nadador.fkCompServer = 5
-             
-            }else if (categoria == "Juvenil I" && modal == 2) {
+            } else if (categoria == "Junior" && modal == 2){
                 nadador.fkCompServer = 6
-            } else if (categoria == "Juvenil II" && modal == 2){
+            } else if (categoria == "Senior" && modal == 2){
                 nadador.fkCompServer = 7
-            } else if (categoria == "Junior I" && modal == 2){
+            } else if (categoria == "Master" && modal == 2) {
                 nadador.fkCompServer = 8
-            } else if (categoria == "Junior II" && modal == 2) {
+            }
+
+            else if (categoria == "Juvenil" && modal == 3) {
                 nadador.fkCompServer = 9
-            }  else if(categoria == "Senior" && modal == 2){
+            } else if (categoria == "Junior" && modal == 3){
                 nadador.fkCompServer = 10
-
-            }else if (categoria == "Juvenil I" && modal == 3) {
+            } else if (categoria == "Senior" && modal == 3){
                 nadador.fkCompServer = 11
-            } else if (categoria == "Juvenil II" && modal == 3){
+            } else if (categoria == "Master" && modal == 3) {
                 nadador.fkCompServer = 12
-            } else if (categoria == "Junior I" && modal == 3){
-                nadador.fkCompServer = 13
-            } else if (categoria == "Junior II" && modal == 3) {
-                nadador.fkCompServer = 14
-            }  else if(categoria == "Senior" && modal == 3){
-                nadador.fkCompServer = 15
+            }
 
-            }else if (categoria == "Juvenil I" && modal == 4) {
+            else if (categoria == "Juvenil" && modal == 4) {
+                nadador.fkCompServer = 13
+            } else if (categoria == "Junior" && modal == 4){
+                nadador.fkCompServer = 14
+            } else if (categoria == "Senior" && modal == 4){
+                nadador.fkCompServer = 15
+            } else if (categoria == "Master" && modal == 4) {
                 nadador.fkCompServer = 16
-            } else if (categoria == "Juvenil II" && modal == 4){
-                nadador.fkCompServer = 17
-            } else if (categoria == "Junior I" && modal == 4){
-                nadador.fkCompServer = 18
-            } else if (categoria == "Junior II" && modal == 4) {
-                nadador.fkCompServer = 19
-            }  else if(categoria == "Senior" && modal == 4){
-                nadador.fkCompServer = 20
             }
 
                 // if (nomeVar == "" || cpfVar == "" || dtNascVar == "" || emailVar == "" || senhaVar == "" || confirmaSenhaVar == "") {

@@ -41,7 +41,7 @@
 
       </div>
       <div class="grafico 2">
-        <canvas id="chartLine"></canvas>
+        <canvas id="chartDoughnut"></canvas>
       </div>
     </div>
   </div>
@@ -55,64 +55,85 @@
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 <script>
-  const labelsBar = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-  ];
+// Plotar o gráfico de barras na tela
+  fetch(`/usuarios/selectGenero`, {
+    headers: {
+      "Content-type": "application/json"
+    }
+  })
+    .then(function (resposta) {
+      console.log(resposta)
+      resposta.json()
+        .then(function (resposta) {
+          console.log("publico por genero: ", resposta)
+          var dados = []
+          for(var i = 0; i < resposta.length; i++){
+            dados.push(resposta[i].genero)
+          }
+          plotarGraficoGenero(dados)
+        })
+    })
 
-  const dataBar = {
-    labels: labelsBar,
-    datasets: [{
-      label: 'My First dataset',
-      backgroundColor: 'rgb(255, 99, 132)',
-      borderColor: 'rgb(255, 99, 132)',
-      data: [0, 10, 5, 2, 20, 30, 45],
-    }]
-  };
 
-  const configBar = {
-    type: 'bar',
-    data: dataBar,
-    options: {}
-  };
+  function plotarGraficoGenero(dados) {
+    const labelsBar = [
+      'Masculino',
+      'Feminino',
+    ];
 
-  const labelsLine = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-  ];
+    const dataBar = {
+      labels: labelsBar,
+      datasets: [{
+        label: 'Nadadores por genêro',
+        backgroundColor: ["#2596be", "#D83234"],
+        borderColor: 'rgb(255, 99, 132)',
+        data: dados,
+      }]
+    };
 
-  const dataLine = {
-    labels: labelsLine,
-    datasets: [{
-      label: 'My First dataset',
-      backgroundColor: 'rgb(255, 99, 132)',
-      borderColor: 'rgb(255, 99, 132)',
-      data: [0, 10, 5, 2, 20, 30, 45],
-    }]
-  };
+    const configBar = {
+      type: 'bar',
+      data: dataBar,
+      options: {}
+    };
 
-  const configLine = {
-    type: 'line',
-    data: dataLine,
-    options: {}
-  };
+    const bar = new Chart(
+      document.getElementById('chartBar'),
+      configBar
+    );
+
+  }
+
+// Plotar o gráfico de doghnut na tela
+  const dataModali = {
+  labels: [
+    'Red',
+    'Blue',
+    'Yellow'
+  ],
+  datasets: [{
+    label: 'My First Dataset',
+    data: [300, 50, 100],
+    backgroundColor: [
+      'rgb(255, 99, 132)',
+      'rgb(54, 162, 235)',
+      'rgb(255, 205, 86)'
+    ],
+    hoverOffset: 4
+  }]
+};
 </script>
 <script>
-  const bar = new Chart(
-    document.getElementById('chartBar'),
-    configBar
-  );
 
-  const line = new Chart(
-    document.getElementById('chartLine'),
-    configLine
-  );
+
+const configModali = {
+  type: 'doughnut',
+  data: dataModali,
+};
+
+const modali = new Chart(
+      document.getElementById('chartDoughnut'),
+      configModali
+    );
+
 </script>

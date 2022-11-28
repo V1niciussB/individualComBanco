@@ -11,7 +11,7 @@
     <title>Document</title>
 </head>
 
-<body onload="filtrar('idNadador')">
+<body onload="filtrar()">
     <div class="mae">
         <div class="navBar">
             <div class="cbar">
@@ -34,27 +34,27 @@
 
         <div class="corpoFiltro">
             <div class="caixaSel">
-                <select id="sel_filtroM" onchange="filtrar('Modalidade')">
+                <select id="sel_filtroM" onchange="filtrar()">
                     <option value=""> -- Modalidade --</option>
-                    <option value=""> Crawl </option>
-                    <option value=""> Costas </option>
-                    <option value=""> Peito </option>
-                    <option value=""> Borboleta </option>
+                    <option value="fkModalidade = 1"> Livre </option>
+                    <option value="fkModalidade = 2"> Costas </option>
+                    <option value="fkModalidade = 3"> Peito </option>
+                    <option value="fkModalidade = 4"> Borboleta </option>
                 </select>
 
-                <select id="sel_filtroC" onchange="filtrar('categoria')">
+                <select id="sel_filtroC" onchange="filtrar()">
                     <option value=""> -- Categoria --</option>
-                    <option value=""> Infantil </option>
-                    <option value=""> Juvenil </option>
-                    <option value=""> Junior </option>
-                    <option value=""> Infanto-Juvenil </option>
-                    <option value=""> Junior-Sênior </option>
+                    <option value="categoria = 'Juvenil'"> Juvenil </option>
+                    <option value="categoria =  'Junior'"> Junior </option>
+                    <option value="categoria =  'Senior'"> Senior </option>
+                    <option value="categoria = 'Master'"> Master </option>
+
 
                 </select>
             </div>
 
             <div class="caixaIn">
-                <input type="text" id="in_filtro" placeholder="Filtrar nome">
+                <input type="text" id="in_filtroN" placeholder="Filtrar nome">
                 <button onclick="filtrar('nome')">Filtrar</button>
             </div>
         </div>
@@ -86,8 +86,29 @@
 </html>
 
 <script>
-    function filtrar(filtro) {
-        fetch(`/usuario/selectComp/${filtro}`, {
+    // fetch da lista dos nadadores
+    function filtrar() {
+        lista.innerHTML = ""
+        var filtro = "idNadador > 0"
+        var selModali = sel_filtroM.value
+        var selCatego = sel_filtroC.value
+        var nomeFiltro = in_filtroN.value
+
+        if (selModali == "" && selCatego == "" && nomeFiltro == "") {
+            filtro = "idNadador > 0"
+        } else if (selModali == "" && selCatego == "") {
+            filtro = `nome = '${nomeFiltro}'`
+        } else if (selModali == "") {
+            filtro = selCatego
+            in_filtroN.value == ""
+        } else if (selCatego == "") {
+            filtro = selModali
+            in_filtroN.value == ""
+        }
+
+        console.log(filtro)
+
+        fetch(`/usuarios/selectComp/${filtro}`, {
             headers: {
                 "Content-type": "application/json"
             }
@@ -97,13 +118,34 @@
                 resposta.json()
                     .then(function (resposta) {
                         console.log("lista:", resposta)
+                        console.log("Tamanho :", resposta.length)
+                        if (resposta.length > 0) {
+
+                            for (var i = 0; i < resposta.length; i++) {
+                                var nadador = resposta[i]
+
+                                lista.innerHTML += `
+                                <tr> 
+                                    <td> ${nadador.idNadador} </td>
+                                    <td> ${nadador.nome} </td> 
+                                    <td> ${nadador.Modalidade} </td> 
+                                    <td> ${nadador.categoria} </td> 
+                                    <td> ${nadador.Data} </td> 
+                                    <td> ${nadador.Hora} </td> 
+                                    </tr>`
+                            }
+                        } else {
+                            lista.innerHTML += `<h2> Não foram encontrado os resultados 😥 </h2>`
+                        }
                     }).catch(function (erro) {
                         console.error(erro)
                     })
+
             })
+
             .catch(function (erro) {
                 console.error(erro)
             })
-
     }
+
 </script>

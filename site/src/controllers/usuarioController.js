@@ -66,10 +66,11 @@ function cadastrar(req, res) {
     var email = req.body.emailServer;
     var cpf = req.body.cpfServer;
     var dtNasc = req.body.dtNascServer;
+    var genero = req.body.generoServer;
     var telefone = req.body.telefoneServer;
     var senha = req.body.senhaServer;
     var modalidade = req.body.modalidadeServer;
-    var categoria = req.body.categoriaServer; 
+    var categoria = req.body.categoriaServer;
     var fkComp = req.body.fkCompServer;
 
     // Faça as validações dos valores
@@ -82,7 +83,7 @@ function cadastrar(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, cpf, dtNasc, telefone, senha, modalidade, categoria, fkComp)
+        usuarioModel.cadastrar(nome, email, cpf, dtNasc, genero, telefone, senha, modalidade, categoria, fkComp)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -103,7 +104,18 @@ function cadastrar(req, res) {
 // Pegar idade do nadador
 function selectComp(req, res) {
     var filtro = req.params.filtro
-    usuarioModel.selectComp(filtro)
+    var order
+
+    if (filtro == undefined || filtro == "") {
+        order = "idNadador"
+    } else if (filtro.slice(0, 5) == "fkMod") {
+        order = "modalidade"
+    } else {
+        order = "categoria"
+    }
+
+    console.log("filtro: ", filtro)
+    usuarioModel.selectComp(filtro, order)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -121,10 +133,29 @@ function selectComp(req, res) {
 
 }
 
+function selectGenero(req, res){
+    usuarioModel.selectGenero()
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        )
+}
+
 module.exports = {
     entrar,
     cadastrar,
     listar,
     testar,
-    selectComp
+    selectComp,
+    selectGenero
 }

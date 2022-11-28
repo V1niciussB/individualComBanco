@@ -19,13 +19,13 @@ function entrar(email, senha) {
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
-function cadastrar(nome, email, cpf, dtNasc, telefone, senha, modalidade, categoria, fkComp) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, cpf, dtNasc, telefone, senha, categoria, modalidade, fkComp);
+function cadastrar(nome, email, cpf, dtNasc, genero, telefone, senha, modalidade, categoria, fkComp) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, cpf, dtNasc, genero,telefone, senha, categoria, modalidade, fkComp);
 
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucao = `
-        INSERT INTO nadador (nome, email, cpf, dtNasc, telefone, senha, categoria, fkModalidade, fkCompeticao) VALUES ('${nome}', '${email}', '${cpf}', '${dtNasc}', '${telefone}', '${senha}',  '${categoria}', ${modalidade}, ${fkComp});
+        INSERT INTO nadador (nome, email, cpf, dtNasc, genero, telefone, senha, categoria, fkModalidade, fkCompeticao) VALUES ('${nome}', '${email}', '${cpf}', '${dtNasc}', '${genero}','${telefone}', '${senha}',  '${categoria}', ${modalidade}, ${fkComp});
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -33,22 +33,32 @@ function cadastrar(nome, email, cpf, dtNasc, telefone, senha, modalidade, catego
 }
 
 // Idade nadadores
-function selectComp(filtro){
+function selectComp(filtro, order){
     var instrucao = `
-    SELECT idNadador, nome, descricao as Modalidade, categoria, DATE(dataH) as "Data", TIME (dataH) as "Hora" FROM nadador
+    SELECT idNadador, nome, descricao as Modalidade, categoria, DATE_FORMAT( dataH, '%d/%c/%Y' ) as "Data", TIME_FORMAT (dataH, '%Hh%i') as "Hora" FROM nadador
     JOIN modalidade ON idModalidade = fkModalidade
     JOIN competicao ON idComp = fkCompeticao
-    ORDER BY ${filtro == undefined ? "idNadador" : filtro}`
+    WHERE ${filtro == undefined || filtro == "" ? "idNadador > 0" : filtro}
+    ORDER BY ${order}`
 
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
 
+function selectGenero(){
+    var instrucao = `SELECT COUNT(genero) as genero FROM nadador
+    GROUP BY genero`
+    
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 
 module.exports = {
     entrar,
     cadastrar,
     listar,
-    selectComp
+    selectComp,
+    selectGenero
 };

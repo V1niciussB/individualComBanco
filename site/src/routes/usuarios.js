@@ -25,4 +25,8 @@ router.get("/selectComp/:filtro", function (req, res) {
     usuarioController.selectComp(req, res)
 })
 
+router.get("/selectGenero", function (req, res){
+    usuarioController.selectGenero(req, res)
+})
+
 module.exports = router;
