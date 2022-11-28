@@ -116,65 +116,121 @@
         function cadastrar() {
             //Recupere o valor da nova input pelo nome do id
             // Agora vá para o método fetch logo abaixo
-            var nomeVar = nome_input.value;
-            var emailVar = email_input.value;
-            var cpfVar = cpf_input.value;
-            var dtNascVar = dtNasc_input.value;
-            var telefoneVar = telefone_input.value
-            var senhaVar = senha_input.value;
             var confirmaSenhaVar = confirmaSenha_input.value;
-            var modalidadeVar = sel_modali.value
 
-            if (nomeVar == "" || cpfVar == "" || dtNascVar == "" || emailVar == "" || senhaVar == "" || confirmaSenhaVar == "") {
-                alert(`Preencha os campos em branco!!`)
-                return false;
+            var nadador = {
+                nomeServer: nome_input.value,
+                emailServer: email_input.value,
+                cpfServer: cpf_input.value,
+                dtNascServer: dtNasc_input.value,
+                telefoneServer: telefone_input.value,
+                senhaServer: senha_input.value,
+                modalidadeServer: sel_modali.value,
+                categoriaServer: "",
+                fkCompServer: ""
             }
 
+            var dataNasc = nadador.dtNascServer
+            // Pegando a fatia correspondente ao ano do campo data 
+            var ano = dataNasc.slice(0, 4)
+            // Trazendo o anoAtual (new date pega a data e fullYear o ano)
+            var anoAtual = new Date().getFullYear()
+            var idade = anoAtual - ano
+            console.log(idade)
 
-            // Enviando o valor da nova input
-            fetch("/usuarios/cadastrar", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    // crie um atributo que recebe o valor recuperado aqui
-                    // Agora vá para o arquivo routes/usuario.js
-                    nomeServer: nomeVar,
-                    emailServer: emailVar,
-                    cpfServer: cpfVar,
-                    dtNascServer: dtNascVar,
-                    telefoneServer: telefoneVar,
-                    senhaServer: senhaVar,
-                    modalidadeServer: modalidadeVar
-                })
-            }).then(function (resposta) {
+            if (idade == 15) {
+                nadador.categoriaServer = "Juvenil I"
+            } else if (idade == 16) {
+                nadador.categoriaServer = "Juvenil II"
+            } else if (idade == 17) {
+                nadador.categoriaServer = "Junior I"
+            } else if (idade == 18 || idade == 19) {
+                nadador.categoriaServer = "Junior II"
+            } else {
+                nadador.categoriaServer = "Senior"
+            }
+            console.log(nadador)
 
-                console.log("resposta: ", resposta);
+            var categoria = nadador.categoriaServer
+            var modal = nadador.modalidadeServer
 
-                if (resposta.ok) {
-                    alert("Cadastro Realizado com sucesso!!")
-                    fetch("/usuarios/selectIdade", {
-                        headers: {
-                            "Content-Type": "application/json"
-                        }
-                    }).then(function (resposta) {
-                        console.log("resposta: ", resposta);
-                        if (resposta.ok) {
-                            resposta.json()
-                                .then(function (respostaIdade) {
-                                    console.log("Idade:", respostaIdade)
-                                    var idade = respostaIdade.idade
-                                }).catch()
-                        }
-                    })
-                } else {
-                    throw ("Houve um erro ao tentar realizar o cadastro!");
-                }
-            }).catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-            });
+            // primeiro horário da competição baseado na modalidade e categoria
+            if (categoria == "Juvenil I" && modal == 1) {
+                nadador.fkCompServer = 1
+            } else if (categoria == "Juvenil II" && modal == 1) {
+                nadador.fkCompServer = 2
+            } else if (categoria == "Junior I" && modal == 1) {
+                nadador.fkCompServer = 3
+            } else if (categoria == "Junior II" && modal == 1) {
+                nadador.fkCompServer = 4
+            }  else if(categoria == "Senior" && modal == 1){
+                nadador.fkCompServer = 5
+             
+            }else if (categoria == "Juvenil I" && modal == 2) {
+                nadador.fkCompServer = 6
+            } else if (categoria == "Juvenil II" && modal == 2){
+                nadador.fkCompServer = 7
+            } else if (categoria == "Junior I" && modal == 2){
+                nadador.fkCompServer = 8
+            } else if (categoria == "Junior II" && modal == 2) {
+                nadador.fkCompServer = 9
+            }  else if(categoria == "Senior" && modal == 2){
+                nadador.fkCompServer = 10
 
-            return false;
-        }
+            }else if (categoria == "Juvenil I" && modal == 3) {
+                nadador.fkCompServer = 11
+            } else if (categoria == "Juvenil II" && modal == 3){
+                nadador.fkCompServer = 12
+            } else if (categoria == "Junior I" && modal == 3){
+                nadador.fkCompServer = 13
+            } else if (categoria == "Junior II" && modal == 3) {
+                nadador.fkCompServer = 14
+            }  else if(categoria == "Senior" && modal == 3){
+                nadador.fkCompServer = 15
+
+            }else if (categoria == "Juvenil I" && modal == 4) {
+                nadador.fkCompServer = 16
+            } else if (categoria == "Juvenil II" && modal == 4){
+                nadador.fkCompServer = 17
+            } else if (categoria == "Junior I" && modal == 4){
+                nadador.fkCompServer = 18
+            } else if (categoria == "Junior II" && modal == 4) {
+                nadador.fkCompServer = 19
+            }  else if(categoria == "Senior" && modal == 4){
+                nadador.fkCompServer = 20
+            }
+
+                // if (nomeVar == "" || cpfVar == "" || dtNascVar == "" || emailVar == "" || senhaVar == "" || confirmaSenhaVar == "") {
+                //     alert(`Preencha os campos em branco!!`)
+                //     return false;
+                // }
+
+
+
+                // Enviando o valor da nova input
+                fetch("/usuarios/cadastrar", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(nadador)
+                }).then(function (resposta) {
+
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+                        alert("Cadastro Realizado com sucesso!!")
+                        window.location.href("login.html")
+                    } else {
+                        throw ("Houve um erro ao tentar realizar o cadastro!");
+                    }
+                }).catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+
+                return false;
+
+
+
+            }
     </script>

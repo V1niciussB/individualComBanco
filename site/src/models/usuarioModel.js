@@ -12,20 +12,20 @@ function listar() {
 function entrar(email, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
     var instrucao = `
-        SELECT * FROM usuario WHERE email = '${email}' AND senha = '${senha}';
+        SELECT * FROM nadador WHERE email = '${email}' AND senha = '${senha}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
-function cadastrar(nome, email, cpf, dtNasc, telefone, senha, modalidade) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, cpf, dtNasc, telefone, senha, modalidade);
+function cadastrar(nome, email, cpf, dtNasc, telefone, senha, modalidade, categoria, fkComp) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, cpf, dtNasc, telefone, senha, categoria, modalidade, fkComp);
 
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucao = `
-        INSERT INTO nadador (nome, email, cpf, dtNasc, telefone, senha, fkModalidade) VALUES ('${nome}', '${email}', '${cpf}', '${dtNasc}', '${telefone}', '${senha}', ${modalidade});
+        INSERT INTO nadador (nome, email, cpf, dtNasc, telefone, senha, categoria, fkModalidade, fkCompeticao) VALUES ('${nome}', '${email}', '${cpf}', '${dtNasc}', '${telefone}', '${senha}',  '${categoria}', ${modalidade}, ${fkComp});
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -33,11 +33,12 @@ function cadastrar(nome, email, cpf, dtNasc, telefone, senha, modalidade) {
 }
 
 // Idade nadadores
-function selectIdade() {
+function selectComp(filtro){
     var instrucao = `
-    SELECT nome, timestampdiff(year,dtNasc,curdate()) as idade FROM nadador
-    ORDER BY idNadador desc
-    limit 1;`
+    SELECT idNadador, nome, descricao as Modalidade, categoria, DATE(dataH) as "Data", TIME (dataH) as "Hora" FROM nadador
+    JOIN modalidade ON idModalidade = fkModalidade
+    JOIN competicao ON idComp = fkCompeticao
+    ORDER BY ${filtro == undefined ? "idNadador" : filtro}`
 
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -49,5 +50,5 @@ module.exports = {
     entrar,
     cadastrar,
     listar,
-    selectIdade
+    selectComp
 };

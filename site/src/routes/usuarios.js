@@ -20,10 +20,9 @@ router.post("/autenticar", function (req, res) {
     usuarioController.entrar(req, res);
 });
 
-router.get("/selectIdade", function (req, res) {
-    usuarioController.selectIdade(req, res);
+// rota dos filtros
+router.get("/selectComp/:filtro", function (req, res) {
+    usuarioController.selectComp(req, res)
 })
-
-
 
 module.exports = router;

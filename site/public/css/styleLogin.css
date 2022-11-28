@@ -128,6 +128,23 @@ header .fakebutton:hover {
     margin-top: 5rem;
 }
 
+#carregamento{
+    position: absolute;
+    opacity: 0;
+    bottom: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 1s ease;
+}
+
+#loader{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 .form {
     background-color: white;
     height: 400px;

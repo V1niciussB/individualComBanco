@@ -69,6 +69,8 @@ function cadastrar(req, res) {
     var telefone = req.body.telefoneServer;
     var senha = req.body.senhaServer;
     var modalidade = req.body.modalidadeServer;
+    var categoria = req.body.categoriaServer; 
+    var fkComp = req.body.fkCompServer;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -80,7 +82,7 @@ function cadastrar(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, cpf, dtNasc, telefone, senha, modalidade)
+        usuarioModel.cadastrar(nome, email, cpf, dtNasc, telefone, senha, modalidade, categoria, fkComp)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -98,8 +100,10 @@ function cadastrar(req, res) {
     }
 }
 
-function selectIdade(req, res) {
-    usuarioModel.selectIdade()
+// Pegar idade do nadador
+function selectComp(req, res) {
+    var filtro = req.params.filtro
+    usuarioModel.selectComp(filtro)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -122,5 +126,5 @@ module.exports = {
     cadastrar,
     listar,
     testar,
-    selectIdade
+    selectComp
 }

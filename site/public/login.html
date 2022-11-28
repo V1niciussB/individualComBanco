@@ -33,7 +33,10 @@
 
     <!-- Form do login -->
     <div class="container">
-        <div class="form tr">
+        <div id="carregamento">
+            <img src="https://cdn.dribbble.com/users/1608176/screenshots/4561509/hygea_loader_dribbble.gif" id="loader">
+        </div>
+            <div class="form tr">
             <div class="nadadorL"></div>
         </div>
 
@@ -59,3 +62,41 @@
     </body>
 
 </html>
+
+
+<script>
+    function validar() {
+        var emailServer = in_email.value;
+        var senhaServer = in_password.value;
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer,
+                senhaServer
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                carregamento.style = 'opacity: 1; bottom: 250px;'
+                loader.src = "https://cdn.dribbble.com/users/1608176/screenshots/4561509/hygea_loader_dribbble.gif"
+                setTimeout(() => {
+                    window.location.href = "competicao.html"
+                }, 2000)
+            } else {
+                alert("Email ou senha incorretos!!")
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+    }
+
+
+</script>

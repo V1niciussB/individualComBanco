@@ -11,7 +11,7 @@
     <title>Document</title>
 </head>
 
-<body>
+<body onload="filtrar('idNadador')">
     <div class="mae">
         <div class="navBar">
             <div class="cbar">
@@ -34,7 +34,7 @@
 
         <div class="corpoFiltro">
             <div class="caixaSel">
-                <select id="sel_filtroM">
+                <select id="sel_filtroM" onchange="filtrar('Modalidade')">
                     <option value=""> -- Modalidade --</option>
                     <option value=""> Crawl </option>
                     <option value=""> Costas </option>
@@ -42,7 +42,7 @@
                     <option value=""> Borboleta </option>
                 </select>
 
-                <select id="sel_filtroC">
+                <select id="sel_filtroC" onchange="filtrar('categoria')">
                     <option value=""> -- Categoria --</option>
                     <option value=""> Infantil </option>
                     <option value=""> Juvenil </option>
@@ -55,7 +55,7 @@
 
             <div class="caixaIn">
                 <input type="text" id="in_filtro" placeholder="Filtrar nome">
-                <button onclick="filtrar()">Filtrar</button>
+                <button onclick="filtrar('nome')">Filtrar</button>
             </div>
         </div>
 
@@ -68,33 +68,12 @@
                     <td> Modalidade </td>
                     <td> Categoria </td>
                     <td> Data </td>
+                    <td> Hora </td>
                 </tr>
             </thead>
 
-            <tbody>
-                <tr>
-                    <td> 1 </td>
-                    <td> Junior Garcia </td>
-                    <td> Crawl </td>
-                    <td> Mirim </td>
-                    <td> 20/12/2022 </td>
-                </tr>
+            <tbody id="lista">
 
-                <tr>
-                    <td> 2 </td>
-                    <td> Carlos Romão </td>
-                    <td> Crawl </td>
-                    <td> Mirim </td>
-                    <td> 20/12/2022 </td>
-                </tr>
-
-                <tr>
-                    <td> 3 </td>
-                    <td> Phelipe João </td>
-                    <td> Crawl </td>
-                    <td> Mirim </td>
-                    <td> 20/12/2022 </td>
-                </tr>
             </tbody>
 
         </table>
@@ -105,3 +84,26 @@
 </body>
 
 </html>
+
+<script>
+    function filtrar(filtro) {
+        fetch(`/usuario/selectComp/${filtro}`, {
+            headers: {
+                "Content-type": "application/json"
+            }
+        })
+            .then(function (resposta) {
+                console.log(resposta)
+                resposta.json()
+                    .then(function (resposta) {
+                        console.log("lista:", resposta)
+                    }).catch(function (erro) {
+                        console.error(erro)
+                    })
+            })
+            .catch(function (erro) {
+                console.error(erro)
+            })
+
+    }
+</script>
