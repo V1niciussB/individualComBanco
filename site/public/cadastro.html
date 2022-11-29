@@ -60,7 +60,7 @@
             <div class="campos">
                 <div class="campo">
                     <label for="cpf">CPF:</label>
-                    <input id="cpf_input" placeholder="XXX.XXX.XXX-XX">
+                    <input id="cpf_input" placeholder="XXX.XXX.XXX-XX" maxlength="11">
                 </div>
 
                 <div class="campo">
@@ -103,7 +103,7 @@
             <div class="campos">
                 <div class="campo">
                     <label for="tel"> Telefone: </label>
-                    <input id="telefone_input" placeholder="11-99999-9999">
+                    <input id="telefone_input" placeholder="11-99999-9999" maxlength="11">
                 </div>
 
                 <div class="campo">
@@ -115,7 +115,7 @@
 
     <script>
         function cadastrar() {
-        // Jason do nadador (mandando pro banco através do fetch)
+            // Jason do nadador (mandando pro banco através do fetch)
             var nadador = {
                 nomeServer: nome_input.value,
                 emailServer: email_input.value,
@@ -195,34 +195,34 @@
             }
 
 
-            // if(nome_input.value == "" || email_input.value == "" || cpf_input.value == "" || dtNasc_input.value == "" || telefone_input.value //== //""  sel_genero.value == "" || senha_input.value == "" || sel_modali.value == ""){
-            //   alert('Cadastro inválido, preencha todos os campos e tente novamente!')
-            //  }
-
-            // Enviando o valor da nova input
-            fetch("/usuarios/cadastrar", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(nadador)
-            }).then(function (resposta) {
-
-                console.log("resposta: ", resposta);
-
-                if (resposta.ok) {
-                    alert("Cadastro Realizado com sucesso!!")
-                    window.location.href = "login.html"
-                } else {
-                    throw ("Houve um erro ao tentar realizar o cadastro!");
-                }
-            }).catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-            });
-
-            return false;
+            if (!nadador.categoriaServer || !nadador.cpfServer || !nadador.dtNascServer || !nadador.emailServer || !nadador.fkCompServer || !nadador.generoServer || !nadador.modalidadeServer || !nadador.nomeServer || !nadador.senhaServer || !nadador.telefoneServer) {
+                alert("Preencha todos os campos")
+            }
+            else {
 
 
+                // Enviando o valor da nova input
+                fetch("/usuarios/cadastrar", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(nadador)
+                }).then(function (resposta) {
 
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+                        alert("Cadastro Realizado com sucesso!!")
+                        window.location.href = "login.html"
+                    } else {
+                        throw ("Houve um erro ao tentar realizar o cadastro!");
+                    }
+                }).catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+
+                return false;
+            }
         }
     </script>
