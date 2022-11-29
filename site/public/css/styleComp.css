@@ -2,7 +2,7 @@
 body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow-x: hidden;
     background-color: #002a4b;
     font-family: 'Poppins';
 }
@@ -92,6 +92,23 @@ body {
 
 .exit a:hover {
     border-left: solid 3px white;
+}
+
+.competicaoInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8rem;
+}
+
+.endereco h1{
+    font-size:  15px;
+    color: white;
+}
+
+.logo img{
+    width: 250px;
 }
 
 .corpoFiltro{

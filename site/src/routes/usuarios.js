@@ -29,4 +29,8 @@ router.get("/selectGenero", function (req, res){
     usuarioController.selectGenero(req, res)
 })
 
+router.get("/selectModali", function(req, res){
+    usuarioController.selectModali(req, res)
+})
+
 module.exports = router;

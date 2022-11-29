@@ -95,13 +95,27 @@ body{
     border-left: solid 3px white;
 }
 
+.corpoDoCorpo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.metricas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
 .corpoGrafico{
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
     background-color: #002a4b;
     gap: 1.5rem;
 }
@@ -110,6 +124,10 @@ body{
     width: 30vw;
     background-color: #ccebff;
     border-radius: 30px;
+}
+
+.um{
+    width: 45vw;
 }
 
 canvas{

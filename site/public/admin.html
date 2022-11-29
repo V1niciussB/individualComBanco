@@ -15,7 +15,6 @@
     <div class="navBar">
       <div class="cbar">
         <div class="list">
-          <ion-icon name="person-circle-outline" class="circulo"></ion-icon>
           <a href="#">
             <ion-icon name="stats-chart-outline" class="desenhoBar"></ion-icon>
           </a>
@@ -24,23 +23,21 @@
           </a>
         </div>
         <div class="exit">
-          <a href="../quem somos/quemsomos.html">
+          <a href="login.html">
             <ion-icon name="exit-outline" class="desenhoBar"></ion-icon>
           </a>
         </div>
       </div>
     </div>
 
-
-
     <div class="corpoGrafico">
-      <div class="grafico 1">
+      <div class="grafico um">
         <div>
           <canvas id="chartBar"></canvas>
         </div>
 
       </div>
-      <div class="grafico 2">
+      <div class="grafico dois">
         <canvas id="chartDoughnut"></canvas>
       </div>
     </div>
@@ -55,7 +52,7 @@
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 <script>
-// Plotar o gráfico de barras na tela
+  // Plotar o gráfico de barras na tela
   fetch(`/usuarios/selectGenero`, {
     headers: {
       "Content-type": "application/json"
@@ -65,9 +62,9 @@
       console.log(resposta)
       resposta.json()
         .then(function (resposta) {
-          console.log("publico por genero: ", resposta)
+          console.log("Nadador por genero: ", resposta)
           var dados = []
-          for(var i = 0; i < resposta.length; i++){
+          for (var i = 0; i < resposta.length; i++) {
             dados.push(resposta[i].genero)
           }
           plotarGraficoGenero(dados)
@@ -104,36 +101,55 @@
 
   }
 
-// Plotar o gráfico de doghnut na tela
-  const dataModali = {
-  labels: [
-    'Red',
-    'Blue',
-    'Yellow'
-  ],
-  datasets: [{
-    label: 'My First Dataset',
-    data: [300, 50, 100],
-    backgroundColor: [
-      'rgb(255, 99, 132)',
-      'rgb(54, 162, 235)',
-      'rgb(255, 205, 86)'
-    ],
-    hoverOffset: 4
-  }]
-};
-</script>
-<script>
+  // fetch do gráfico de dougth
+  fetch(`/usuarios/selectModali`, {
+    headers: {
+      "Content-type": "application/json"
+    }
+  })
+    .then(function (resposta) {
+      console.log(resposta)
+      resposta.json()
+        .then(function (resposta) {
+          console.log("Nadador por modalidade: ", resposta)
+          var dados = []
+          for (var i = 0; i < resposta.length; i++) {
+            dados.push(resposta[i].modalidade)
+          }
+          console.log(dados)
+
+          plotarGraficoModali(dados)
+        })
+    })
 
 
-const configModali = {
-  type: 'doughnut',
-  data: dataModali,
-};
+  function plotarGraficoModali(dados) {
+    const labelsModali = [
+      'Livre',
+      'Costas',
+      'Peito',
+      'Borboleta'
+    ];
 
-const modali = new Chart(
+    const dataModali = {
+      labels: labelsModali,
+      datasets: [{
+        label: 'Nadadores por genêro',
+        backgroundColor: ["#6c25be", "#1E1FF3", "#00E9FF", "#6D6D6F"],
+        borderColor: 'transparent',
+        data: dados,
+      }]
+    };
+
+
+    const configModali = {
+      type: 'doughnut',
+      data: dataModali,
+    };
+
+    const modali = new Chart(
       document.getElementById('chartDoughnut'),
       configModali
     );
-
+  }
 </script>

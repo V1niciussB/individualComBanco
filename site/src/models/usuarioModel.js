@@ -55,10 +55,19 @@ function selectGenero(){
 }
 
 
+function selectModali(){
+    var instrucao = `SELECT COUNT(fkModalidade) as modalidade FROM nadador
+    GROUP BY fkModalidade`
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     entrar,
     cadastrar,
     listar,
     selectComp,
-    selectGenero
+    selectGenero,
+    selectModali
 };
