@@ -115,10 +115,7 @@
 
     <script>
         function cadastrar() {
-            //Recupere o valor da nova input pelo nome do id
-            // Agora vá para o método fetch logo abaixo
-            var confirmaSenhaVar = confirmaSenha_input.value;
-
+        // Jason do nadador (mandando pro banco através do fetch)
             var nadador = {
                 nomeServer: nome_input.value,
                 emailServer: email_input.value,
@@ -131,7 +128,7 @@
                 categoriaServer: "",
                 fkCompServer: ""
             }
-
+            var confirmaSenhaVar = confirmaSenha_input.value;
             var dataNasc = nadador.dtNascServer
             // Pegando a fatia correspondente ao ano do campo data 
             var ano = dataNasc.slice(0, 4)

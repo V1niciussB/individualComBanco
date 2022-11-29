@@ -66,6 +66,11 @@ INSERT INTO competicao VALUES
 
 (null, '2022-12-23 10:00:00', "Praça Charles Miller - Pacaembu");
 
+
+SELECT idNadador, nome, descricao, categoria, DATE_FORMAT( dataH, '%d/%c/%Y' ) as "Data", TIME_FORMAT (dataH, '%Hh%i') as "Hora" FROM nadador
+JOIN modalidade ON idModalidade = fkModalidade
+JOIN competicao ON idComp = fkCompeticao;
+
 SELECT COUNT(genero) as genero FROM nadador
 GROUP BY genero;
 
